@@ -128,7 +128,27 @@
                         <i class="fas fa-user"></i> Profile
                     </a>
                 </li>
+                <li class="sidebar-logout">
+                    <form action="{{ route('admin.logout') }}" method="POST" class="d-inline">
+                        @csrf
+                        <button type="submit" class="btn btn-danger w-100 text-start">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </form>
+                </li>
             </ul>
+            
+            <!-- Mobile-friendly logout section -->
+            <div class="sidebar-footer d-md-none">
+                <div class="sidebar-logout-mobile">
+                    <form action="{{ route('admin.logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-danger w-100">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </form>
+                </div>
+            </div>
         </nav>
 
         <!-- Page Content -->

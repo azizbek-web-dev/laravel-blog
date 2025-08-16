@@ -1,6 +1,41 @@
 // Modern Admin Panel JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Bootstrap dropdowns
+    const dropdownElementList = document.querySelectorAll('.dropdown-toggle');
+    const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl));
+    
+    // Debug dropdown functionality
+    console.log('Admin panel initialized');
+    console.log('Dropdown elements found:', dropdownElementList.length);
+    
+    // Fallback dropdown functionality if Bootstrap fails
+    dropdownElementList.forEach(function(dropdownToggle) {
+        dropdownToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            const dropdownMenu = this.nextElementSibling;
+            if (dropdownMenu && dropdownMenu.classList.contains('dropdown-menu')) {
+                dropdownMenu.classList.toggle('show');
+                
+                // Close other dropdowns
+                document.querySelectorAll('.dropdown-menu.show').forEach(function(menu) {
+                    if (menu !== dropdownMenu) {
+                        menu.classList.remove('show');
+                    }
+                });
+            }
+        });
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.dropdown')) {
+            document.querySelectorAll('.dropdown-menu.show').forEach(function(menu) {
+                menu.classList.remove('show');
+            });
+        }
+    });
+    
     // Sidebar toggle functionality
     const sidebarCollapse = document.getElementById('sidebarCollapse');
     const sidebar = document.getElementById('sidebar');
