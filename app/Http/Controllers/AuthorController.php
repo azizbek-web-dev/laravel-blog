@@ -35,7 +35,7 @@ class AuthorController extends Controller
      */
     public function show(): View
     {
-        $author = Author::findOrFail(1);
+        $author = Author::findOrFail(3);
         $posts = Post::latest()->take(9)->get();
         $categories = Category::all();
         $authors = Author::all();
