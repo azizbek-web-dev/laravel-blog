@@ -73,14 +73,40 @@ class AdminPostController extends Controller
                 'title' => $request->title,
                 'slug' => Str::slug($request->title),
                 'content' => $request->content,
-                'excerpt' => $request->excerpt,
+                'excerpt' => $request->excerpt ?: '', // Use provided excerpt or empty
                 'image' => 'img/posts/' . $imageName,
                 'category_id' => $request->category_id,
                 'author_id' => $author->id,
                 'status' => 'published',
             ]);
 
-            return redirect()->route('admin.posts.index')->with('success', 'Post created successfully!');
+            // Auto-fill SEO fields if not provided
+            if (!$request->filled('meta_title')) {
+                $post->meta_title = $post->generateMetaTitle();
+            }
+            if (!$request->filled('meta_description')) {
+                $post->meta_description = $post->generateMetaDescription();
+            }
+            if (!$request->filled('excerpt')) {
+                $post->excerpt = $post->generateExcerpt();
+            }
+            if (!$request->filled('meta_keywords')) {
+                $post->meta_keywords = $post->generateKeywords();
+            }
+            if (!$request->filled('og_title')) {
+                $post->og_title = $post->generateOgTitle();
+            }
+            if (!$request->filled('og_description')) {
+                $post->og_description = $post->generateOgDescription();
+            }
+            if (!$request->filled('canonical_url')) {
+                $post->canonical_url = $post->url;
+            }
+
+            // Save the updated SEO fields
+            $post->save();
+
+            return redirect()->route('admin.posts.index')->with('success', 'Post created successfully with auto-generated SEO!');
             
         } catch (\Exception $e) {
             
@@ -135,7 +161,33 @@ class AdminPostController extends Controller
             $updated = $post->update($data);
             
             if ($updated) {
-                return redirect()->route('admin.posts.index')->with('success', 'Post updated successfully!');
+                // Auto-fill SEO fields if not provided
+                if (!$request->filled('meta_title')) {
+                    $post->meta_title = $post->generateMetaTitle();
+                }
+                if (!$request->filled('meta_description')) {
+                    $post->meta_description = $post->generateMetaDescription();
+                }
+                if (!$request->filled('excerpt')) {
+                    $post->excerpt = $post->generateExcerpt();
+                }
+                if (!$request->filled('meta_keywords')) {
+                    $post->meta_keywords = $post->generateKeywords();
+                }
+                if (!$request->filled('og_title')) {
+                    $post->og_title = $post->generateOgTitle();
+                }
+                if (!$request->filled('og_description')) {
+                    $post->og_description = $post->generateOgDescription();
+                }
+                if (!$request->filled('canonical_url')) {
+                    $post->canonical_url = $post->url;
+                }
+
+                // Save the updated SEO fields
+                $post->save();
+                
+                return redirect()->route('admin.posts.index')->with('success', 'Post updated successfully with auto-generated SEO!');
             } else {
                 return back()->with('error', 'No changes were made to the post.');
             }
@@ -148,6 +200,47 @@ class AdminPostController extends Controller
     {
         $post->delete();
         return redirect()->route('admin.posts.index')->with('success', 'Post deleted successfully!');
+    }
+
+    /**
+     * Regenerate SEO fields for an existing post
+     */
+    public function regenerateSeo(Post $post)
+    {
+        try {
+            $post->autoFillSeo();
+            $post->save();
+            
+            return back()->with('success', 'SEO fields regenerated successfully!');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Failed to regenerate SEO: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Bulk regenerate SEO for multiple posts
+     */
+    public function bulkRegenerateSeo(Request $request)
+    {
+        $request->validate([
+            'post_ids' => 'required|array',
+            'post_ids.*' => 'exists:posts,id'
+        ]);
+
+        $posts = Post::whereIn('id', $request->post_ids)->get();
+        $updatedCount = 0;
+
+        foreach ($posts as $post) {
+            try {
+                $post->autoFillSeo();
+                $post->save();
+                $updatedCount++;
+            } catch (\Exception $e) {
+                continue;
+            }
+        }
+
+        return back()->with('success', "SEO fields regenerated for {$updatedCount} posts successfully!");
     }
 }
 

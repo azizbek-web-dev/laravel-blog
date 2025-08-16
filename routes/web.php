@@ -93,6 +93,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('categories', AdminCategoryController::class);
         Route::resource('authors', AdminAuthorController::class);
         
+        // SEO management routes
+        Route::post('/posts/{post}/regenerate-seo', [AdminPostController::class, 'regenerateSeo'])->name('posts.regenerate-seo');
+        Route::post('/posts/bulk-regenerate-seo', [AdminPostController::class, 'bulkRegenerateSeo'])->name('posts.bulk-regenerate-seo');
+        
         // System configuration
         Route::get('/settings', [AdminSettingsController::class, 'index'])->name('settings.index');
         Route::put('/settings', [AdminSettingsController::class, 'update'])->name('settings.update');

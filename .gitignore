@@ -52,7 +52,7 @@ Thumbs.db
 
 # Composer
 /auth.json
-composer.phar
+#composer.phar
 
 # Laravel Specific
 bootstrap/cache/*.php

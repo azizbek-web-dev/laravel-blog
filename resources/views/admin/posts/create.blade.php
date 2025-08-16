@@ -281,10 +281,12 @@
 
                     <!-- SEO Tab -->
                     <div class="seo-tab">
-                        <h4 class="mb-3">
+                        <h5 class="mb-3">
                             <i class="fas fa-search"></i> SEO Settings
-                            <small class="text-muted">Optimize your post for search engines</small>
-                        </h4>
+                            <button type="button" class="btn btn-success btn-sm ms-2" onclick="autoFillSeo()">
+                                <i class="fas fa-magic"></i> Auto-Fill SEO
+                            </button>
+                        </h5>
                         
                         <div class="row">
                             <div class="col-md-6">
@@ -512,5 +514,96 @@
             ogDescription.dispatchEvent(new Event('input'));
         }
     });
+
+    // Auto-fill SEO function
+    function autoFillSeo() {
+        const title = document.getElementById('title').value;
+        const content = quill.getText();
+        const excerpt = document.getElementById('excerpt').value;
+        
+        if (!title.trim()) {
+            alert('Please enter a title first!');
+            return;
+        }
+        
+        if (!content.trim()) {
+            alert('Please enter some content first!');
+            return;
+        }
+        
+        // Generate meta title (limit to 60 characters)
+        let metaTitle = title;
+        if (metaTitle.length > 60) {
+            metaTitle = metaTitle.substring(0, 57) + '...';
+        }
+        document.getElementById('meta_title').value = metaTitle;
+        
+        // Generate meta description from content (limit to 160 characters)
+        let metaDescription = content.substring(0, 160);
+        if (metaDescription.length === 160) {
+            const lastSpace = metaDescription.lastIndexOf(' ');
+            if (lastSpace > 0) {
+                metaDescription = metaDescription.substring(0, lastSpace);
+            }
+        }
+        document.getElementById('meta_description').value = metaDescription;
+        
+        // Generate excerpt if empty
+        if (!excerpt.trim()) {
+            let generatedExcerpt = content.substring(0, 150);
+            if (generatedExcerpt.length === 150) {
+                const lastSpace = generatedExcerpt.lastIndexOf(' ');
+                if (lastSpace > 0) {
+                    generatedExcerpt = generatedExcerpt.substring(0, lastSpace);
+                }
+            }
+            document.getElementById('excerpt').value = generatedExcerpt;
+        }
+        
+        // Generate keywords from title and content
+        const text = title + ' ' + content;
+        const words = text.toLowerCase().replace(/[^\w\s]/g, '').split(' ');
+        const stopWords = ['the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'is', 'are', 'was', 'were', 'be', 'been', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could', 'should', 'may', 'might', 'can', 'this', 'that', 'these', 'those'];
+        
+        const keywords = words.filter(word => word.length > 3 && !stopWords.includes(word));
+        const wordCount = {};
+        keywords.forEach(word => {
+            wordCount[word] = (wordCount[word] || 0) + 1;
+        });
+        
+        const topKeywords = Object.keys(wordCount)
+            .sort((a, b) => wordCount[b] - wordCount[a])
+            .slice(0, 10);
+        
+        document.getElementById('meta_keywords').value = topKeywords.join(', ');
+        
+        // Generate OG title (limit to 95 characters)
+        let ogTitle = title;
+        if (ogTitle.length > 95) {
+            ogTitle = ogTitle.substring(0, 92) + '...';
+        }
+        document.getElementById('og_title').value = ogTitle;
+        
+        // Generate OG description (limit to 200 characters)
+        let ogDescription = content.substring(0, 200);
+        if (ogDescription.length === 200) {
+            const lastSpace = ogDescription.lastIndexOf(' ');
+            if (lastSpace > 0) {
+                ogDescription = ogDescription.substring(0, lastSpace);
+            }
+        }
+        document.getElementById('og_description').value = ogDescription;
+        
+        // Update all character counters
+        document.querySelectorAll('[id$="_counter"]').forEach(counter => {
+            const fieldId = counter.id.replace('_counter', '');
+            const field = document.getElementById(fieldId);
+            if (field) {
+                field.dispatchEvent(new Event('input'));
+            }
+        });
+        
+        alert('SEO fields have been auto-filled successfully!');
+    }
 </script>
 @endsection
