@@ -12,15 +12,32 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('authors', function (Blueprint $table) {
-            $table->string('slug')->nullable()->after('github');
-            $table->string('meta_title')->nullable()->after('slug');
-            $table->text('meta_description')->nullable()->after('meta_title');
-            $table->text('meta_keywords')->nullable()->after('meta_description');
-            $table->string('og_title')->nullable()->after('meta_keywords');
-            $table->text('og_description')->nullable()->after('og_title');
-            $table->string('og_image')->nullable()->after('og_description');
-            $table->string('canonical_url')->nullable()->after('og_image');
+            if (!Schema::hasColumn('authors', 'slug')) {
+                $table->string('slug')->nullable()->after('github');
+            }
+            if (!Schema::hasColumn('authors', 'meta_title')) {
+                $table->string('meta_title')->nullable()->after('slug');
+            }
+            if (!Schema::hasColumn('authors', 'meta_description')) {
+                $table->text('meta_description')->nullable()->after('meta_title');
+            }
+            if (!Schema::hasColumn('authors', 'meta_keywords')) {
+                $table->text('meta_keywords')->nullable()->after('meta_description');
+            }
+            if (!Schema::hasColumn('authors', 'og_title')) {
+                $table->string('og_title')->nullable()->after('meta_keywords');
+            }
+            if (!Schema::hasColumn('authors', 'og_description')) {
+                $table->text('og_description')->nullable()->after('og_title');
+            }
+            if (!Schema::hasColumn('authors', 'og_image')) {
+                $table->string('og_image')->nullable()->after('og_description');
+            }
+            if (!Schema::hasColumn('authors', 'canonical_url')) {
+                $table->string('canonical_url')->nullable()->after('og_image');
+            }
         });
+        
     }
 
     /**
