@@ -105,6 +105,19 @@ class Post extends Model
     }
 
     /**
+     * Get the post's content with proper HTML decoding
+     */
+    public function getContentAttribute($value): string
+    {
+        // Decode HTML entities if they exist
+        if (is_string($value)) {
+            return html_entity_decode($value, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        }
+        
+        return $value;
+    }
+
+    /**
      * Get the post's URL.
      */
     public function getUrlAttribute(): string

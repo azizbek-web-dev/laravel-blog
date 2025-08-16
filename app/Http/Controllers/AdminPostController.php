@@ -72,7 +72,7 @@ class AdminPostController extends Controller
             $post = Post::create([
                 'title' => $request->title,
                 'slug' => Str::slug($request->title),
-                'content' => $request->content,
+                'content' => htmlspecialchars($request->content, ENT_QUOTES | ENT_HTML5, 'UTF-8'),
                 'excerpt' => $request->excerpt ?: '', // Use provided excerpt or empty
                 'image' => 'img/posts/' . $imageName,
                 'category_id' => $request->category_id,
@@ -145,7 +145,7 @@ class AdminPostController extends Controller
         $data = [
             'title' => $request->title,
             'slug' => Str::slug($request->title),
-            'content' => $request->content,
+            'content' => htmlspecialchars($request->content, ENT_QUOTES | ENT_HTML5, 'UTF-8'),
             'category_id' => $request->category_id,
             'excerpt' => $request->excerpt,
         ];

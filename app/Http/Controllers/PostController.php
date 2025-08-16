@@ -40,6 +40,12 @@ class PostController extends Controller
     public function show(string $slug)
     {
         $post = Post::where('slug', $slug)->firstOrFail();
+        
+        // Ensure content is properly decoded
+        if (is_string($post->content)) {
+            $post->content = html_entity_decode($post->content, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        }
+        
         $posts = Post::latest()->take(6)->get(); // Related posts
         $categories = Category::all();
         $authors = Author::all();

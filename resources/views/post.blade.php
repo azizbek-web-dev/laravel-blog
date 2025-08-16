@@ -21,7 +21,10 @@
                 <!-- Post Content -->
                 <div class="post-content">
                     <div class="post-text">
-                        {!! $post->content !!}
+                        @php
+                            $decodedContent = html_entity_decode($post->content, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+                        @endphp
+                        {!! $decodedContent !!}
                     </div>
 
                     <!-- Post Image -->
