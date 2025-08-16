@@ -1,0 +1,2303 @@
+/* Modern Admin Panel Styles */
+:root {
+    --primary-color: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary-color: #64748b;
+    --success-color: #10b981;
+    --info-color: #06b6d4;
+    --warning-color: #f59e0b;
+    --danger-color: #ef4444;
+    --light-color: #f8fafc;
+    --dark-color: #1e293b;
+    --sidebar-width: 280px;
+    --navbar-height: 70px;
+    --border-radius: 12px;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #f1f5f9;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Admin Layout */
+.admin-wrapper {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f1f5f9;
+}
+
+/* Modern Sidebar */
+.admin-sidebar {
+    width: var(--sidebar-width);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+    position: fixed;
+    height: 100vh;
+    z-index: 999;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-lg);
+    left: 0;
+    top: 0;
+    overflow-y: auto;
+    contain: layout style paint;
+}
+
+.admin-sidebar .sidebar-header {
+    padding: 2rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    contain: layout style paint;
+}
+
+.admin-sidebar .sidebar-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    contain: layout style paint;
+}
+
+.admin-sidebar .sidebar-header i {
+    font-size: 1.75rem;
+    color: rgba(255, 255, 255, 0.9);
+    contain: layout style paint;
+}
+
+.admin-sidebar ul.components {
+    padding: 1.5rem 0;
+    contain: layout style paint;
+}
+
+.admin-sidebar ul li {
+    margin: 0.25rem 1rem;
+    contain: layout style paint;
+}
+
+.admin-sidebar ul li a {
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    contain: layout style paint;
+}
+
+.admin-sidebar ul li a:hover,
+.admin-sidebar ul li.active a {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateX(4px);
+    contain: layout style paint;
+}
+
+/* Enhanced sidebar link state management */
+.admin-sidebar ul li a:focus {
+    contain: layout style paint;
+}
+
+.admin-sidebar ul li a:active {
+    contain: layout style paint;
+}
+
+.admin-sidebar ul li a:visited {
+    contain: layout style paint;
+}
+
+.admin-sidebar ul li a i {
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+    contain: layout style paint;
+}
+
+/* Enhanced sidebar icon management */
+.admin-sidebar ul li a i:hover {
+    contain: layout style paint;
+}
+
+.admin-sidebar ul li a i:focus {
+    contain: layout style paint;
+}
+
+.admin-sidebar ul li a i:active {
+    contain: layout style paint;
+}
+
+/* Main Content Area */
+.admin-content {
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    min-height: 100vh;
+    background-color: #f1f5f9;
+    position: relative;
+    z-index: 10;
+    contain: layout style paint;
+}
+
+/* Top Navigation */
+.admin-navbar {
+    background: white;
+    box-shadow: var(--shadow);
+    padding: 1rem 2rem;
+    height: var(--navbar-height);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    margin: 0 1rem 1rem 1rem;
+    contain: layout style paint;
+}
+
+.admin-navbar .btn-info {
+    background: var(--primary-color);
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    transition: all 0.2s ease;
+    contain: layout style paint;
+}
+
+.admin-navbar .btn-info:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+    contain: layout style paint;
+}
+
+/* Enhanced navbar button state management */
+.admin-navbar .btn-info:focus {
+    contain: layout style paint;
+}
+
+.admin-navbar .btn-info:active {
+    contain: layout style paint;
+}
+
+.admin-navbar .btn-info:disabled {
+    contain: layout style paint;
+}
+
+/* Content Container */
+.admin-content .container-fluid {
+    padding: 0 2rem 2rem 2rem;
+    position: relative;
+    z-index: 15;
+    overflow: visible;
+    contain: layout style paint;
+}
+
+/* Fix container content positioning */
+.admin-content .container-fluid * {
+    position: relative;
+    z-index: 20;
+    contain: layout style paint;
+}
+
+/* Row and column positioning */
+.row {
+    position: relative;
+    z-index: 20;
+    contain: layout style paint;
+}
+
+.col-12, .col-md-8, .col-md-4, .col-lg-8, .col-lg-4 {
+    position: relative;
+    z-index: 25;
+    contain: layout style paint;
+}
+
+/* Fix column content positioning */
+.col-12 *, .col-md-8 *, .col-md-4 *, .col-lg-8 *, .col-lg-4 * {
+    position: relative;
+    z-index: 30;
+    contain: layout style paint;
+}
+
+/* Modern Cards */
+.card {
+    border: none;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    background: white;
+    transition: all 0.2s ease;
+    position: relative;
+    z-index: 5;
+    overflow: visible;
+    contain: layout style paint;
+}
+
+/* Enhanced card positioning */
+.card * {
+    position: relative;
+    z-index: 15;
+    contain: layout style paint;
+}
+
+/* Fix card content positioning */
+.card .card-title,
+.card .card-header h1,
+.card .card-header h2,
+.card .card-header h3,
+.card .card-header h4,
+.card .card-header h5,
+.card .card-header h6 {
+    position: relative;
+    z-index: 25;
+    contain: layout style paint;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    z-index: 15;
+}
+
+/* Enhanced card hover positioning */
+.card:hover * {
+    position: relative;
+    z-index: 16;
+    contain: layout style paint;
+}
+
+.card-header {
+    background: white;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 1.5rem;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    font-weight: 600;
+    color: var(--dark-color);
+    position: relative;
+    z-index: 10;
+    contain: layout style paint;
+}
+
+/* Enhanced card header positioning */
+.card-header * {
+    position: relative;
+    z-index: 25;
+    contain: layout style paint;
+}
+
+/* Fix card header content */
+.card-header h1,
+.card-header h2,
+.card-header h3,
+.card-header h4,
+.card-header h5,
+.card-header h6,
+.card-header .card-title {
+    position: relative;
+    z-index: 30;
+    contain: layout style paint;
+}
+
+.card-body {
+    padding: 1.5rem;
+    position: relative;
+    z-index: 5;
+    overflow: visible;
+    contain: layout style paint;
+}
+
+/* Enhanced card body positioning */
+.card-body * {
+    position: relative;
+    z-index: 20;
+    contain: layout style paint;
+}
+
+/* Fix card body content */
+.card-body h1,
+.card-body h2,
+.card-body h3,
+.card-body h4,
+.card-body h5,
+.card-body h6,
+.card-body .form-label,
+.card-body .form-control,
+.card-body .form-select {
+    position: relative;
+    z-index: 25;
+    contain: layout style paint;
+}
+
+/* Enhanced card interactions */
+.card:focus-within {
+    position: relative;
+    z-index: 2;
+    contain: layout style paint;
+}
+
+.card-body:focus-within {
+    position: relative;
+    z-index: 2;
+    contain: layout style paint;
+}
+
+/* Enhanced card state management */
+.card:active {
+    contain: layout style paint;
+}
+
+.card:visited {
+    contain: layout style paint;
+}
+
+.card:target {
+    contain: layout style paint;
+}
+
+/* Enhanced focus states */
+.form-control:focus,
+.form-select:focus,
+.btn:focus {
+    position: relative;
+    z-index: 2;
+    contain: layout style paint;
+}
+
+/* Enhanced focus state management */
+.form-control:focus-visible,
+.form-select:focus-visible,
+.btn:focus-visible {
+    contain: layout style paint;
+}
+
+.form-control:focus-within,
+.form-select:focus-within,
+.btn:focus-within {
+    contain: layout style paint;
+}
+
+/* Modern Forms */
+.form-label {
+    font-weight: 600;
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+/* Enhanced form label management */
+.form-label.required::after {
+    contain: layout style paint;
+}
+
+.form-label.optional::after {
+    contain: layout style paint;
+}
+
+.form-label.small {
+    contain: layout style paint;
+}
+
+.form-label.large {
+    contain: layout style paint;
+}
+
+.form-control, .form-select {
+    border: 2px solid #e2e8f0;
+    border-radius: var(--border-radius);
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    background-color: #fafafa;
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+/* Enhanced form control management */
+.form-control:disabled,
+.form-select:disabled {
+    contain: layout style paint;
+}
+
+.form-control:read-only,
+.form-select:read-only {
+    contain: layout style paint;
+}
+
+.form-control:placeholder-shown,
+.form-select:placeholder-shown {
+    contain: layout style paint;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    background-color: white;
+    outline: none;
+    position: relative;
+    z-index: 2;
+    contain: layout style paint;
+}
+
+.form-control:focus {
+    background-color: white;
+    contain: layout style paint;
+}
+
+/* Enhanced form control state management */
+.form-control:invalid,
+.form-select:invalid {
+    contain: layout style paint;
+}
+
+.form-control:valid,
+.form-select:valid {
+    contain: layout style paint;
+}
+
+.form-control:required,
+.form-select:required {
+    contain: layout style paint;
+}
+
+/* Enhanced form spacing */
+.mb-3 {
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+.mb-3 .form-control,
+.mb-3 .form-select {
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+/* Enhanced form control management */
+.mb-2 .form-control,
+.mb-2 .form-select {
+    contain: layout style paint;
+}
+
+.mb-4 .form-control,
+.mb-4 .form-select {
+    contain: layout style paint;
+}
+
+.mb-5 .form-control,
+.mb-5 .form-select {
+    contain: layout style paint;
+}
+
+/* Modern Buttons */
+.btn {
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    transition: all 0.2s ease;
+    border: none;
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+    position: relative;
+    z-index: 2;
+}
+
+/* Enhanced button positioning */
+.btn-group .btn {
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+.btn-group .btn:hover {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+    contain: layout style paint;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    contain: layout style paint;
+}
+
+.btn-success {
+    background: var(--success-color);
+    color: white;
+    contain: layout style paint;
+}
+
+.btn-danger {
+    background: var(--danger-color);
+    color: white;
+    contain: layout style paint;
+}
+
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    contain: layout style paint;
+}
+
+/* Enhanced button variants */
+.btn-secondary {
+    contain: layout style paint;
+}
+
+.btn-secondary:hover {
+    contain: layout style paint;
+}
+
+.btn-info {
+    contain: layout style paint;
+}
+
+.btn-info:hover {
+    contain: layout style paint;
+}
+
+/* Enhanced button variant state management */
+.btn-secondary:focus {
+    contain: layout style paint;
+}
+
+.btn-secondary:active {
+    contain: layout style paint;
+}
+
+.btn-info:focus {
+    contain: layout style paint;
+}
+
+.btn-info:active {
+    contain: layout style paint;
+}
+
+/* Quill.js Editor Styling */
+.ql-editor {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 400px !important;
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+    border: none !important;
+    padding: 1rem !important;
+    background: white !important;
+    position: relative !important;
+    z-index: 1 !important;
+    overflow: visible !important;
+    contain: layout style paint;
+}
+
+.ql-toolbar {
+    width: 100% !important;
+    max-width: 100% !important;
+    border: 2px solid #e2e8f0 !important;
+    border-bottom: none !important;
+    border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+    position: relative !important;
+    z-index: 2 !important;
+    contain: layout style paint;
+    padding: 0.75rem !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+}
+
+.ql-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    border: 2px solid #e2e8f0 !important;
+    border-top: none !important;
+    border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
+    background: white !important;
+    position: relative !important;
+    z-index: 1 !important;
+    contain: layout style paint;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+}
+
+.ql-editor:focus {
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1) !important;
+    outline: none !important;
+}
+
+/* Quill.js toolbar button styling */
+.ql-toolbar button {
+    border: none !important;
+    background: transparent !important;
+    padding: 0.375rem !important;
+    margin: 0.0625rem !important;
+    border-radius: 3px !important;
+    transition: all 0.2s ease !important;
+    contain: layout style paint;
+    width: 32px !important;
+    height: 32px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 14px !important;
+    flex-shrink: 0 !important;
+}
+
+.ql-toolbar button:hover {
+    background: rgba(99, 102, 241, 0.1) !important;
+    color: var(--primary-color) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2) !important;
+    contain: layout style paint;
+}
+
+.ql-toolbar button.ql-active {
+    background: var(--primary-color) !important;
+    color: white !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3) !important;
+    contain: layout style paint;
+}
+
+/* Quill.js dropdown styling */
+.ql-toolbar .ql-picker {
+    border: none !important;
+    background: transparent !important;
+    contain: layout style paint;
+    margin: 0.0625rem !important;
+    flex-shrink: 0 !important;
+}
+
+.ql-toolbar .ql-picker-label {
+    border: none !important;
+    background: transparent !important;
+    padding: 0.375rem 0.5rem !important;
+    margin: 0.0625rem !important;
+    border-radius: 3px !important;
+    transition: all 0.2s ease !important;
+    contain: layout style paint;
+    height: 32px !important;
+    display: flex !important;
+    align-items: center !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+}
+
+.ql-toolbar .ql-picker-label:hover {
+    background: rgba(99, 102, 241, 0.1) !important;
+    color: var(--primary-color) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2) !important;
+    contain: layout style paint;
+}
+
+.ql-toolbar .ql-picker-options {
+    background: white !important;
+    border: 2px solid #e2e8f0 !important;
+    border-radius: var(--border-radius) !important;
+    box-shadow: var(--shadow-lg) !important;
+    z-index: 9999 !important;
+    position: absolute !important;
+    contain: layout style paint;
+    padding: 0.5rem !important;
+    min-width: 120px !important;
+}
+
+/* Quill.js toolbar separator styling */
+.ql-toolbar .ql-separator {
+    width: 1px !important;
+    height: 30px !important;
+    background: #e2e8f0 !important;
+    margin: 0.5rem 0.25rem !important;
+    contain: layout style paint;
+}
+
+/* Quill.js toolbar group styling */
+.ql-toolbar .ql-formats {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+    contain: layout style paint;
+    margin-right: 0.5rem !important;
+}
+
+/* Enhanced toolbar overall styling */
+.ql-toolbar.ql-snow {
+    padding: 0.5rem !important;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+    border: 2px solid #e2e8f0 !important;
+    border-bottom: none !important;
+    border-radius: 8px 8px 0 0 !important;
+    contain: layout style paint;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 0.125rem !important;
+    overflow: visible !important;
+    min-height: 48px !important;
+    max-height: none !important;
+}
+
+/* Toolbar button icons */
+.ql-toolbar button svg {
+    width: 16px !important;
+    height: 16px !important;
+    contain: layout style paint;
+}
+
+/* Color picker styling */
+.ql-toolbar .ql-color .ql-picker-options,
+.ql-toolbar .ql-background .ql-picker-options {
+    min-width: 200px !important;
+    contain: layout style paint;
+}
+
+/* Font size picker styling */
+.ql-toolbar .ql-size .ql-picker-options {
+    min-width: 100px !important;
+    contain: layout style paint;
+}
+
+/* Header picker styling */
+.ql-toolbar .ql-header .ql-picker-options {
+    min-width: 120px !important;
+    contain: layout style paint;
+}
+
+/* Enhanced toolbar spacing and organization */
+.ql-toolbar .ql-formats:not(:last-child) {
+    margin-right: 0.25rem !important;
+    contain: layout style paint;
+}
+
+.ql-toolbar .ql-formats:first-child {
+    margin-left: 0 !important;
+    contain: layout style paint;
+}
+
+.ql-toolbar .ql-formats:last-child {
+    margin-right: 0 !important;
+    contain: layout style paint;
+}
+
+/* Better button grouping */
+.ql-toolbar .ql-formats {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.125rem !important;
+    contain: layout style paint;
+    padding: 0.125rem !important;
+    border-radius: 3px !important;
+    transition: background-color 0.2s ease !important;
+    flex-shrink: 0 !important;
+    margin: 0.125rem !important;
+}
+
+.ql-toolbar .ql-formats:hover {
+    background: rgba(99, 102, 241, 0.05) !important;
+    contain: layout style paint;
+}
+
+/* Enhanced separator styling */
+.ql-toolbar .ql-separator {
+    width: 1px !important;
+    height: 24px !important;
+    background: linear-gradient(to bottom, transparent, #cbd5e1, transparent) !important;
+    margin: 0 0.25rem !important;
+    contain: layout style paint;
+    flex-shrink: 0 !important;
+}
+
+/* Active state for format groups */
+.ql-toolbar .ql-formats.has-active {
+    background: rgba(99, 102, 241, 0.1) !important;
+    contain: layout style paint;
+}
+
+/* Prevent toolbar from wrapping */
+.ql-toolbar {
+    flex-wrap: wrap !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    height: auto !important;
+}
+
+/* Custom scrollbar for toolbar - remove */
+.ql-toolbar::-webkit-scrollbar {
+    display: none !important;
+}
+
+/* Quill.js content styling */
+.ql-editor h1,
+.ql-editor h2,
+.ql-editor h3,
+.ql-editor h4,
+.ql-editor h5,
+.ql-editor h6 {
+    margin: 1rem 0 0.5rem 0 !important;
+    font-weight: 600 !important;
+    color: var(--dark-color) !important;
+    contain: layout style paint;
+}
+
+.ql-editor p {
+    margin: 0 0 1rem 0 !important;
+    contain: layout style paint;
+}
+
+.ql-editor ul,
+.ql-editor ol {
+    margin: 0 0 1rem 0 !important;
+    padding-left: 2rem !important;
+    contain: layout style paint;
+}
+
+.ql-editor blockquote {
+    border-left: 4px solid var(--primary-color) !important;
+    margin: 1rem 0 !important;
+    padding: 0.5rem 1rem !important;
+    background: #f8fafc !important;
+    font-style: italic !important;
+    contain: layout style paint;
+}
+
+.ql-editor code {
+    background: #f1f5f9 !important;
+    padding: 0.25rem 0.5rem !important;
+    border-radius: 4px !important;
+    font-family: 'Courier New', monospace !important;
+    contain: layout style paint;
+}
+
+.ql-editor pre {
+    background: #f1f5f9 !important;
+    padding: 1rem !important;
+    border-radius: var(--border-radius) !important;
+    overflow-x: auto !important;
+    contain: layout style paint;
+}
+
+/* Quill.js image styling */
+.ql-editor img {
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: var(--border-radius) !important;
+    margin: 1rem 0 !important;
+    contain: layout style paint;
+}
+
+/* Quill.js video styling */
+.ql-editor video {
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: var(--border-radius) !important;
+    margin: 1rem 0 !important;
+    contain: layout style paint;
+}
+
+/* Quill.js link styling */
+.ql-editor a {
+    color: var(--primary-color) !important;
+    text-decoration: underline !important;
+    contain: layout style paint;
+}
+
+.ql-editor a:hover {
+    color: var(--primary-dark) !important;
+    contain: layout style paint;
+}
+
+/* Ensure form containers have proper positioning */
+.card-body,
+.form-content {
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+/* Enhanced form container management */
+.form-content .card {
+    contain: layout style paint;
+}
+
+.form-content .card-body {
+    contain: layout style paint;
+}
+
+.form-content .form-row {
+    contain: layout style paint;
+}
+
+/* Fix sidebar overlap issues */
+@media (max-width: 1024px) {
+    .admin-sidebar {
+        z-index: 1000;
+    }
+    
+    .admin-content {
+        z-index: 1;
+    }
+    
+    /* Ensure Quill.js editor works properly on mobile */
+    .ql-editor {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: visible !important;
+    }
+    
+    .ql-toolbar {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: visible !important;
+    }
+    
+    .ql-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: visible !important;
+    }
+}
+
+/* Tables */
+.table {
+    margin-bottom: 0;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+.table th {
+    background: #f8fafc;
+    border: none;
+    font-weight: 600;
+    color: var(--dark-color);
+    padding: 1rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: relative;
+    z-index: 2;
+    contain: layout style paint;
+}
+
+.table td {
+    padding: 1rem;
+    border: none;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: middle;
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f8fafc;
+    position: relative;
+    z-index: 2;
+    contain: layout style paint;
+}
+
+/* Enhanced table row management */
+.table tbody tr {
+    contain: layout style paint;
+}
+
+.table tbody tr:nth-child(even) {
+    contain: layout style paint;
+}
+
+.table tbody tr:nth-child(odd) {
+    contain: layout style paint;
+}
+
+/* Enhanced table positioning */
+.table-responsive {
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .admin-sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 1000;
+    }
+    
+    .admin-sidebar.active {
+        transform: translateX(0);
+        z-index: 1000;
+    }
+    
+    .admin-content {
+        margin-left: 0;
+        width: 100%;
+        z-index: 1;
+    }
+    
+    .admin-navbar {
+        margin: 0 0 1rem 0;
+        border-radius: 0;
+        z-index: 100;
+    }
+    
+    .admin-content .container-fluid {
+        padding: 0 1rem 1rem 1rem;
+        z-index: 1;
+    }
+    
+    /* Ensure CKEditor works properly on mobile */
+    .ck.ck-editor {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: visible !important;
+        z-index: 1 !important;
+    }
+    
+    .ck.ck-editor__main {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: visible !important;
+        z-index: 1 !important;
+    }
+    
+    .ck.ck-editor__editable {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: visible !important;
+        z-index: 1 !important;
+    }
+    
+    /* Fix form layout on mobile */
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .form-content {
+        z-index: 1;
+        overflow: visible;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --sidebar-width: 100%;
+    }
+    
+    .admin-sidebar {
+        width: 100%;
+        z-index: 1000;
+        contain: layout style paint;
+    }
+    
+    /* Enhanced mobile sidebar management */
+    .admin-sidebar .sidebar-header {
+        contain: layout style paint;
+    }
+    
+    .admin-sidebar ul.components {
+        contain: layout style paint;
+    }
+    
+    .admin-sidebar ul li {
+        contain: layout style paint;
+    }
+    
+    .admin-content .container-fluid {
+        padding: 0 0.5rem 0.5rem 0.5rem;
+        z-index: 1;
+        contain: layout style paint;
+    }
+    
+    /* Enhanced mobile container management */
+    .admin-content .row {
+        contain: layout style paint;
+    }
+    
+    .admin-content .col-12 {
+        contain: layout style paint;
+    }
+    
+    .card-body {
+        padding: 1rem;
+        z-index: 1;
+        contain: layout style paint;
+    }
+    
+    /* Enhanced mobile card management */
+    .card {
+        contain: layout style paint;
+    }
+    
+    .card-header {
+        contain: layout style paint;
+    }
+    
+    .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+        z-index: 1;
+        contain: layout style paint;
+    }
+    
+    .btn-group .btn {
+        width: auto;
+        z-index: 1;
+        contain: layout style paint;
+    }
+    
+    /* Enhanced mobile button management */
+    .btn:hover {
+        contain: layout style paint;
+    }
+    
+    .btn:focus {
+        contain: layout style paint;
+    }
+    
+    /* Enhanced mobile form layout */
+    .form-content {
+        z-index: 1;
+        overflow: visible;
+        contain: layout style paint;
+    }
+    
+    .form-content .ck-editor {
+        z-index: 1;
+        overflow: visible;
+        contain: layout style paint;
+    }
+    
+    /* Fix mobile sidebar overlay */
+    .sidebar-overlay {
+        z-index: 999;
+        contain: layout style paint;
+    }
+    
+    /* Ensure proper mobile navigation */
+    .admin-navbar {
+        z-index: 100;
+        contain: layout style paint;
+    }
+    
+    /* Enhanced mobile form management */
+    .form-content .form-row {
+        contain: layout style paint;
+    }
+    
+    .form-content .mb-3 {
+        contain: layout style paint;
+    }
+    
+    /* Enhanced mobile sidebar management */
+    .admin-sidebar .sidebar-header {
+        contain: layout style paint;
+    }
+    
+    .admin-sidebar ul.components {
+        contain: layout style paint;
+    }
+}
+
+/* Sidebar Toggle Button */
+#sidebarCollapse {
+    display: none;
+    background: var(--primary-color);
+    border: none;
+    color: white;
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+    transition: all 0.2s ease;
+    position: relative;
+    z-index: 101;
+    contain: layout style paint;
+}
+
+/* Enhanced sidebar toggle management */
+#sidebarCollapse:hover {
+    contain: layout style paint;
+}
+
+#sidebarCollapse:focus {
+    contain: layout style paint;
+}
+
+@media (max-width: 1024px) {
+    #sidebarCollapse {
+        display: block;
+        contain: layout style paint;
+    }
+    
+    /* Ensure proper layering on mobile */
+    .admin-sidebar {
+        z-index: 1000;
+        contain: layout style paint;
+    }
+    
+    .admin-content {
+        z-index: 1;
+        contain: layout style paint;
+    }
+    
+    .admin-navbar {
+        z-index: 100;
+        contain: layout style paint;
+    }
+    
+    /* Enhanced mobile layout management */
+    .admin-sidebar .sidebar-header {
+        contain: layout style paint;
+    }
+    
+    .admin-sidebar ul.components {
+        contain: layout style paint;
+    }
+}
+
+/* Sidebar Overlay */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    contain: layout style paint;
+}
+
+.sidebar-overlay.active {
+    display: block;
+    contain: layout style paint;
+}
+
+/* Enhanced overlay management */
+.sidebar-overlay:hover {
+    contain: layout style paint;
+}
+
+/* Enhanced responsive behavior */
+@media (max-width: 1024px) {
+    .admin-sidebar.active {
+        z-index: 1000;
+        contain: layout style paint;
+    }
+    
+    .admin-content.active {
+        z-index: 1;
+        contain: layout style paint;
+    }
+    
+    /* Ensure Quill.js editor works properly when sidebar is active */
+    .admin-sidebar.active ~ .admin-content .ql-editor {
+        z-index: 1;
+        contain: layout style paint;
+    }
+    
+    /* Enhanced mobile sidebar management */
+    .admin-sidebar.active .sidebar-header {
+        contain: layout style paint;
+    }
+    
+    .admin-sidebar.active ul.components {
+        contain: layout style paint;
+    }
+}
+
+/* Custom Scrollbar */
+.admin-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.admin-sidebar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    contain: layout style paint;
+}
+
+.admin-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    contain: layout style paint;
+}
+
+.admin-sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+    contain: layout style paint;
+}
+
+/* Enhanced scrollbar management */
+.admin-sidebar::-webkit-scrollbar-corner {
+    background: rgba(255, 255, 255, 0.1);
+    contain: layout style paint;
+}
+
+/* Alerts */
+.alert {
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1000;
+    contain: layout style paint;
+}
+
+.alert-success {
+    background: #d1fae5;
+    color: #065f46;
+    border-left: 4px solid var(--success-color);
+    position: relative;
+    z-index: 1000;
+    contain: layout style paint;
+}
+
+.alert-danger {
+    background: #fee2e2;
+    color: #991b1b;
+    border-left: 4px solid var(--danger-color);
+    position: relative;
+    z-index: 1000;
+    contain: layout style paint;
+}
+
+/* Enhanced alert positioning */
+.alert-dismissible {
+    position: relative;
+    z-index: 1000;
+    contain: layout style paint;
+}
+
+.alert .btn-close {
+    position: relative;
+    z-index: 1001;
+    contain: layout style paint;
+}
+
+/* Pagination */
+.pagination {
+    margin: 2rem 0 0 0;
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+.page-link {
+    color: var(--primary-color);
+    border: 1px solid #e2e8f0;
+    padding: 0.75rem 1rem;
+    margin: 0 0.25rem;
+    border-radius: var(--border-radius);
+    transition: all 0.2s ease;
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+.page-link:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    position: relative;
+    z-index: 2;
+    contain: layout style paint;
+}
+
+.page-item.active .page-link {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    position: relative;
+    z-index: 2;
+    contain: layout style paint;
+}
+
+/* Enhanced pagination management */
+.page-item.disabled .page-link {
+    contain: layout style paint;
+}
+
+.page-item:first-child .page-link {
+    contain: layout style paint;
+}
+
+.page-item:last-child .page-link {
+    contain: layout style paint;
+}
+
+/* Enhanced pagination positioning */
+.pagination .page-item {
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+/* Image Preview */
+#imagePreview {
+    background: #f8fafc;
+    border: 2px dashed #cbd5e1;
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    text-align: center;
+    margin-top: 0.5rem;
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+#previewImg {
+    max-height: 200px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+/* Enhanced image preview positioning */
+#newImagePreview {
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+/* Stats Cards */
+.stats-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--primary-color);
+    transition: all 0.2s ease;
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+.stats-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    z-index: 2;
+    contain: layout style paint;
+}
+
+/* Enhanced stats card management */
+.stats-card:focus-within {
+    contain: layout style paint;
+}
+
+.stats-card .stats-icon {
+    contain: layout style paint;
+}
+
+.stats-card h3 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+.stats-card p {
+    margin: 0.5rem 0 0 0;
+    color: var(--secondary-color);
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+/* Form Layout */
+.form-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    contain: layout style paint;
+}
+
+/* Content Area - Full Width Editor */
+.content-area {
+    grid-column: 1 / -1;
+    margin-bottom: 1.5rem;
+    contain: layout style paint;
+    order: -1;
+}
+
+.content-area .ql-editor {
+    min-height: 400px !important;
+    max-height: 400px !important;
+    width: 100% !important;
+    overflow-y: auto !important;
+    contain: layout style paint;
+}
+
+.content-area .ql-toolbar {
+    width: 100% !important;
+    max-width: 100% !important;
+    contain: layout style paint;
+}
+
+.content-area .ql-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    contain: layout style paint;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .content-area .ql-editor {
+        min-height: 350px !important;
+        max-height: 350px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+/* Enhanced form layout management */
+.form-row .col-md-8,
+.form-row .col-md-4,
+.form-row .col-lg-8,
+.form-row .col-lg-4 {
+    contain: layout style paint;
+}
+
+.form-row .mb-3 {
+    contain: layout style paint;
+}
+
+/* Enhanced form column management */
+.form-row .col-12 {
+    contain: layout style paint;
+}
+
+.form-row .col-6 {
+    contain: layout style paint;
+}
+
+.form-row .col-3 {
+    contain: layout style paint;
+}
+
+/* Enhanced form content styling */
+.form-content {
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+    contain: layout style paint;
+}
+
+/* Fix page loading states and prevent layout shifts */
+.form-content * {
+    position: relative;
+    z-index: 10;
+    contain: layout style paint;
+}
+
+/* Fix page title and main heading positioning */
+.form-content h1,
+.form-content h2,
+.form-content h3,
+.form-content h4,
+.form-content h5,
+.form-content h6,
+.form-content .page-title,
+.form-content .main-heading {
+    position: relative;
+    z-index: 20;
+    contain: layout style paint;
+}
+
+/* Fix form labels and inputs positioning */
+.form-content .form-label,
+.form-content .form-control,
+.form-content .form-select,
+.form-content .form-textarea {
+    position: relative;
+    z-index: 15;
+    contain: layout style paint;
+}
+
+/* Fix button positioning */
+.form-content .btn,
+.form-content .btn-group,
+.form-content .action-buttons {
+    position: relative;
+    z-index: 15;
+    contain: layout style paint;
+}
+
+/* Fix post title and heading positioning */
+.form-content h1,
+.form-content h2,
+.form-content h3,
+.form-content h4,
+.form-content h5,
+.form-content h6 {
+    position: relative;
+    z-index: 10;
+    contain: layout style paint;
+}
+
+/* Fix form title positioning */
+.form-content .card-title,
+.form-content .card-header h1,
+.form-content .card-header h2,
+.form-content .card-header h3,
+.form-content .card-header h4,
+.form-content .card-header h5,
+.form-content .card-header h6 {
+    position: relative;
+    z-index: 10;
+    contain: layout style paint;
+}
+
+.form-content .ql-editor {
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+    contain: layout style paint;
+}
+
+.form-content .ql-toolbar {
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+    contain: layout style paint;
+}
+
+.form-content .ql-container {
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+    contain: layout style paint;
+}
+
+/* Enhanced form content management */
+.form-content .form-group {
+    contain: layout style paint;
+}
+
+.form-content .input-group {
+    contain: layout style paint;
+}
+
+.form-content .input-group-text {
+    contain: layout style paint;
+}
+
+/* Ensure proper spacing in forms */
+.form-content .mb-3 {
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+.form-content .form-control,
+.form-content .form-select {
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+/* Enhanced form spacing management */
+.form-content .mb-2 {
+    contain: layout style paint;
+}
+
+.form-content .mb-4 {
+    contain: layout style paint;
+}
+
+.form-content .mb-5 {
+    contain: layout style paint;
+}
+
+.form-content .mt-3 {
+    contain: layout style paint;
+}
+
+.form-content .mt-4 {
+    contain: layout style paint;
+}
+
+/* Enhanced form layout */
+.form-content .row {
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+.form-content .col-md-8,
+.form-content .col-md-4,
+.form-content .col-lg-8,
+.form-content .col-lg-4 {
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+/* Enhanced form column layout */
+.form-content .col-md-6 {
+    contain: layout style paint;
+}
+
+.form-content .col-md-12 {
+    contain: layout style paint;
+}
+
+.form-content .col-lg-6 {
+    contain: layout style paint;
+}
+
+.form-content .col-lg-12 {
+    contain: layout style paint;
+}
+
+/* Form validation styling */
+.form-content .is-invalid {
+    z-index: 2;
+    contain: layout style paint;
+}
+
+.form-content .invalid-feedback {
+    z-index: 2;
+    position: relative;
+    contain: layout style paint;
+}
+
+/* Enhanced form validation management */
+.form-content .is-valid {
+    contain: layout style paint;
+}
+
+.form-content .valid-feedback {
+    contain: layout style paint;
+}
+
+.form-content .form-text {
+    contain: layout style paint;
+}
+
+/* Enhanced dropdown and modal positioning */
+.dropdown-menu {
+    position: absolute !important;
+    z-index: 9999 !important;
+    contain: layout style paint;
+}
+
+.dropdown-item {
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+.dropdown-item:hover {
+    position: relative;
+    z-index: 2;
+}
+
+/* Modal positioning */
+.modal {
+    z-index: 9999 !important;
+    contain: layout style paint;
+}
+
+.modal-dialog {
+    z-index: 10000 !important;
+    contain: layout style paint;
+}
+
+.modal-content {
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+/* Enhanced navbar dropdown management */
+.admin-navbar .dropdown {
+    contain: layout style paint;
+}
+
+.admin-navbar .dropdown-toggle {
+    contain: layout style paint;
+}
+
+.admin-navbar .dropdown-toggle:hover {
+    contain: layout style paint;
+}
+
+/* Enhanced navbar dropdown state management */
+.admin-navbar .dropdown-toggle:focus {
+    contain: layout style paint;
+}
+
+.admin-navbar .dropdown-toggle:active {
+    contain: layout style paint;
+}
+
+.admin-navbar .dropdown-menu {
+    contain: layout style paint;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+@media (max-width: 768px) {
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .action-buttons .btn {
+        width: 100%;
+    }
+}
+
+/* Enhanced action buttons management */
+.action-buttons .btn:first-child {
+    contain: layout style paint;
+}
+
+.action-buttons .btn:last-child {
+    contain: layout style paint;
+}
+
+.action-buttons .btn:nth-child(2) {
+    contain: layout style paint;
+}
+
+/* Enhanced button group positioning */
+.btn-group {
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+.btn-group .btn {
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
+}
+
+.btn-group .btn:hover {
+    position: relative;
+    z-index: 2;
+}
+
+/* Enhanced button management */
+.btn-group .btn:focus {
+    contain: layout style paint;
+}
+
+.btn-group .btn:active {
+    contain: layout style paint;
+}
+
+/* Enhanced button group state management */
+.btn-group .btn:first-child {
+    contain: layout style paint;
+}
+
+.btn-group .btn:last-child {
+    contain: layout style paint;
+}
+
+.btn-group .btn:nth-child(2) {
+    contain: layout style paint;
+}
+
+/* Prevent layout shifts during page loading */
+.admin-content {
+    min-height: 100vh;
+    position: relative;
+    z-index: 15;
+    contain: layout style paint;
+}
+
+/* Fix page loading states */
+.admin-content.loading * {
+    position: relative;
+    z-index: 20;
+    contain: layout style paint;
+}
+
+/* Fix Quill.js editor loading states */
+.ql-editor.loading,
+.ql-toolbar.loading,
+.ql-container.loading {
+    position: relative;
+    z-index: 25;
+    contain: layout style paint;
+}
+
+/* Fix form loading states */
+.form-content.loading * {
+    position: relative;
+    z-index: 25;
+    contain: layout style paint;
+}
+
+/* Ensure proper spacing during loading */
+.form-content.loading .mb-3,
+.form-content.loading .mb-4,
+.form-content.loading .mb-5 {
+    position: relative;
+    z-index: 25;
+    contain: layout style paint;
+}
+
+/* Custom Important and Reminder Note Styling */
+.ql-editor .important-note {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%) !important;
+    color: #92400e !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 8px !important;
+    border-left: 4px solid #f59e0b !important;
+    font-weight: 600 !important;
+    margin: 0.5rem 0 !important;
+    display: inline-block !important;
+    box-shadow: 0 2px 4px rgba(245, 158, 11, 0.2) !important;
+    position: relative !important;
+    contain: layout style paint;
+}
+
+.ql-editor .important-note::before {
+    content: "⚠️ " !important;
+    margin-right: 0.5rem !important;
+    font-size: 1.2em !important;
+    contain: layout style paint;
+}
+
+.ql-editor .reminder-note {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%) !important;
+    color: #1e40af !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 8px !important;
+    border-left: 4px solid #3b82f6 !important;
+    font-weight: 600 !important;
+    margin: 0.5rem 0 !important;
+    display: inline-block !important;
+    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2) !important;
+    position: relative !important;
+    contain: layout style paint;
+}
+
+.ql-editor .reminder-note::before {
+    content: "📝 " !important;
+    margin-right: 0.5rem !important;
+    font-size: 1.2em !important;
+    contain: layout style paint;
+}
+
+/* Enhanced Quill.js content styling */
+.ql-editor h1,
+.ql-editor h2,
+.ql-editor h3,
+.ql-editor h4,
+.ql-editor h5,
+.ql-editor h6 {
+    margin: 1rem 0 0.5rem 0 !important;
+    font-weight: 600 !important;
+    color: var(--dark-color) !important;
+    contain: layout style paint;
+    line-height: 1.3 !important;
+}
+
+.ql-editor h1 {
+    font-size: 2.5rem !important;
+    color: var(--primary-color) !important;
+    border-bottom: 3px solid var(--primary-color) !important;
+    padding-bottom: 0.5rem !important;
+}
+
+.ql-editor h2 {
+    font-size: 2rem !important;
+    color: var(--primary-dark) !important;
+    border-bottom: 2px solid var(--primary-dark) !important;
+    padding-bottom: 0.3rem !important;
+}
+
+.ql-editor h3 {
+    font-size: 1.5rem !important;
+    color: var(--secondary-color) !important;
+}
+
+.ql-editor p {
+    margin: 0 0 1rem 0 !important;
+    contain: layout style paint;
+    line-height: 1.7 !important;
+    font-size: 1.1rem !important;
+}
+
+.ql-editor ul,
+.ql-editor ol {
+    margin: 0 0 1rem 0 !important;
+    padding-left: 2rem !important;
+    contain: layout style paint;
+}
+
+.ql-editor li {
+    margin: 0.5rem 0 !important;
+    line-height: 1.6 !important;
+    contain: layout style paint;
+}
+
+.ql-editor blockquote {
+    border-left: 4px solid var(--primary-color) !important;
+    margin: 1rem 0 !important;
+    padding: 1rem 1.5rem !important;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+    font-style: italic !important;
+    contain: layout style paint;
+    border-radius: 0 8px 8px 0 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    position: relative !important;
+}
+
+.ql-editor blockquote::before {
+    content: '"' !important;
+    font-size: 3rem !important;
+    color: var(--primary-color) !important;
+    position: absolute !important;
+    top: -0.5rem !important;
+    left: 1rem !important;
+    font-family: Georgia, serif !important;
+    contain: layout style paint;
+}
+
+.ql-editor code {
+    background: #f1f5f9 !important;
+    padding: 0.25rem 0.5rem !important;
+    border-radius: 4px !important;
+    font-family: 'Courier New', monospace !important;
+    contain: layout style paint;
+    color: #dc2626 !important;
+    font-weight: 500 !important;
+    border: 1px solid #e2e8f0 !important;
+}
+
+.ql-editor pre {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+    color: #e2e8f0 !important;
+    padding: 1.5rem !important;
+    border-radius: var(--border-radius) !important;
+    overflow-x: auto !important;
+    contain: layout style paint;
+    border: 1px solid #475569 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+.ql-editor pre code {
+    background: transparent !important;
+    color: #e2e8f0 !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+/* Enhanced table styling */
+.ql-editor table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    margin: 1rem 0 !important;
+    border-radius: var(--border-radius) !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    contain: layout style paint;
+}
+
+.ql-editor table th {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%) !important;
+    color: white !important;
+    padding: 1rem !important;
+    font-weight: 600 !important;
+    text-align: left !important;
+    contain: layout style paint;
+}
+
+.ql-editor table td {
+    padding: 0.75rem 1rem !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    contain: layout style paint;
+}
+
+.ql-editor table tr:nth-child(even) {
+    background: #f8fafc !important;
+    contain: layout style paint;
+}
+
+.ql-editor table tr:hover {
+    background: #f1f5f9 !important;
+    contain: layout style paint;
+}
+
+/* Enhanced link styling */
+.ql-editor a {
+    color: var(--primary-color) !important;
+    text-decoration: none !important;
+    border-bottom: 2px solid transparent !important;
+    transition: all 0.2s ease !important;
+    contain: layout style paint;
+    font-weight: 500 !important;
+}
+
+.ql-editor a:hover {
+    color: var(--primary-dark) !important;
+    border-bottom-color: var(--primary-dark) !important;
+    contain: layout style paint;
+}
+
+/* Enhanced image styling */
+.ql-editor img {
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: var(--border-radius) !important;
+    margin: 1rem 0 !important;
+    contain: layout style paint;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    border: 3px solid white !important;
+}
+
+/* Enhanced video styling */
+.ql-editor video {
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: var(--border-radius) !important;
+    margin: 1rem 0 !important;
+    contain: layout style paint;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Custom toolbar button styling for important and reminder */
+.ql-toolbar button[data-value="important"] {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%) !important;
+    color: #92400e !important;
+    border: 2px solid #f59e0b !important;
+    font-weight: 600 !important;
+}
+
+.ql-toolbar button[data-value="important"]:hover {
+    background: linear-gradient(135deg, #fde68a 0%, #fcd34d 100%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3) !important;
+}
+
+.ql-toolbar button[data-value="reminder"] {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%) !important;
+    color: #1e40af !important;
+    border: 2px solid #3b82f6 !important;
+    font-weight: 600 !important;
+}
+
+.ql-toolbar button[data-value="reminder"]:hover {
+    background: linear-gradient(135deg, #bfdbfe 0%, #93c5fd 100%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
+}
+
+/* Quill.js Font Family Definitions */
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="Arial"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="Arial"]::before {
+    content: 'Arial';
+    font-family: 'Arial';
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="Times New Roman"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="Times New Roman"]::before {
+    content: 'Times New Roman';
+    font-family: 'Times New Roman';
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="Georgia"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="Georgia"]::before {
+    content: 'Georgia';
+    font-family: 'Georgia';
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="Verdana"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="Verdana"]::before {
+    content: 'Verdana';
+    font-family: 'Verdana';
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="Courier New"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="Courier New"]::before {
+    content: 'Courier New';
+    font-family: 'Courier New';
+}
+
+/* Apply fonts to content */
+.ql-editor .ql-font-Arial {
+    font-family: 'Arial', sans-serif !important;
+}
+
+.ql-editor .ql-font-Times-New-Roman {
+    font-family: 'Times New Roman', serif !important;
+}
+
+.ql-editor .ql-font-Georgia {
+    font-family: 'Georgia', serif !important;
+}
+
+.ql-editor .ql-font-Verdana {
+    font-family: 'Verdana', sans-serif !important;
+}
+
+.ql-editor .ql-font-Courier-New {
+    font-family: 'Courier New', monospace !important;
+}
+
+
+

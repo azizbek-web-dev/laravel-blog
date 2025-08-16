@@ -1,0 +1,26 @@
+This is the images directory for the MetaBlog project.
+
+Required images:
+- hero-office.jpg (Hero section background - modern office with technology)
+- post-1.jpg (Beach aerial view)
+- post-2.jpg (Venice canals)
+- post-3.jpg (Person with vintage car)
+- post-4.jpg (Rustic house with trees)
+- post-5.jpg (Rock cairn at sunset)
+- post-6.jpg (Vintage car under building)
+- post-7.jpg (Tech items flat lay)
+- post-8.jpg (Tropical island beach)
+- post-9.jpg (PlayStation 5 controller)
+- author-1.jpg (Jason Francisco avatar)
+- author-2.jpg (Tracey Wilson avatar)
+- author-3.jpg (Elizabeth Slavin avatar)
+- author-4.jpg (Ernie Smith avatar)
+- author-5.jpg (Eric Smith avatar)
+
+Please replace these placeholder references with actual image files.
+You can use stock photos, your own images, or download free images from sites like:
+- Unsplash (unsplash.com)
+- Pexels (pexels.com)
+- Pixabay (pixabay.com)
+
+Make sure all images are optimized for web use (recommended size: 800x600px for posts, 400x400px for avatars).
