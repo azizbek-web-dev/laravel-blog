@@ -1,4 +1,4 @@
-# 🚀 DevMed.uz - Professional Blog Platform
+# DevMed.uz - Professional blog platform
 
 A modern, feature-rich blog platform built with Laravel, featuring a comprehensive admin panel, SEO optimization, and responsive design. This project demonstrates professional web development practices and modern PHP architecture.
 
@@ -7,30 +7,30 @@ A modern, feature-rich blog platform built with Laravel, featuring a comprehensi
 ![MySQL](https://img.shields.io/badge/MySQL-8.0+-orange.svg)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3+-purple.svg)
 
-## ✨ Features
+##Features
 
-### 🎯 Core Functionality
+###Core Functionality
 - **Blog Management**: Create, edit, and manage blog posts with rich text editing
 - **Category System**: Organize content with customizable categories and visual themes
 - **Author Management**: Multi-author support with individual profiles and authentication
 - **SEO Optimization**: Comprehensive meta tags, Open Graph, and canonical URL support
 - **Responsive Design**: Mobile-first approach with modern UI/UX principles
 
-### 🔧 Admin Panel
+### Admin panel
 - **Dashboard Analytics**: Real-time statistics and content overview
 - **Content Management**: Full CRUD operations for posts, categories, and authors
 - **Site Settings**: Comprehensive configuration management system
 - **User Management**: Secure authentication and profile management
 - **Media Handling**: Image upload and management capabilities
 
-### 🚀 Technical Features
+### Technical features
 - **Laravel Framework**: Modern PHP framework with best practices
 - **Database Design**: Optimized MySQL database with proper relationships
 - **Caching System**: Efficient data caching for improved performance
 - **Security**: CSRF protection, input validation, and secure authentication
 - **API Ready**: RESTful architecture for future API development
 
-## 🛠️ Technology Stack
+## Technology stack
 
 ### Backend
 - **PHP 8.1+** - Modern PHP with type hints and features
@@ -44,20 +44,20 @@ A modern, feature-rich blog platform built with Laravel, featuring a comprehensi
 - **Quill.js** - Rich text editor
 - **Responsive CSS** - Mobile-first design approach
 
-### Development Tools
+### Development tools
 - **Git** - Version control
 - **Laravel Artisan** - Command-line tools
 - **PHPUnit** - Testing framework (ready for implementation)
 
-## 📋 Requirements
+## Requirements
 
-### System Requirements
+### System requirements
 - PHP >= 8.1
 - MySQL >= 8.0
 - Composer >= 2.0
 - Node.js >= 16.0 (for asset compilation)
 
-### PHP Extensions
+### PHP extensions
 - BCMath PHP Extension
 - Ctype PHP Extension
 - JSON PHP Extension
@@ -67,7 +67,7 @@ A modern, feature-rich blog platform built with Laravel, featuring a comprehensi
 - Tokenizer PHP Extension
 - XML PHP Extension
 
-## 🚀 Installation
+## Installation
 
 ### 1. Clone the Repository
 ```bash
@@ -75,45 +75,45 @@ git clone https://github.com/yourusername/devmed-blog.git
 cd devmed-blog
 ```
 
-### 2. Install Dependencies
+### 2. Install dependencies
 ```bash
 composer install
 npm install
 ```
 
-### 3. Environment Configuration
+### 3. Environment configuration
 ```bash
 cp .env.example .env
 php artisan key:generate
 ```
 
-### 4. Database Setup
+### 4. Database setup
 ```bash
 # Configure your database in .env file
 php artisan migrate
 php artisan db:seed
 ```
 
-### 5. Storage Setup
+### 5. Storage setup
 ```bash
 php artisan storage:link
 ```
 
-### 6. Asset Compilation
+### 6. Asset compilation
 ```bash
 npm run dev
 # or for production
 npm run build
 ```
 
-### 7. Start the Application
+### 7. Start the application
 ```bash
 php artisan serve
 ```
 
-## 🗄️ Database Structure
+## Database structure
 
-### Core Tables
+### Core tables
 - **posts** - Blog posts with SEO metadata
 - **categories** - Content categorization with visual themes
 - **authors** - User management and authentication
@@ -121,29 +121,29 @@ php artisan serve
 - **contact_messages** - Contact form submissions
 - **newsletters** - Email subscription management
 
-### Key Features
+### Key features
 - **SEO Fields**: Meta titles, descriptions, keywords, Open Graph data
 - **Visual Customization**: Category colors, icons, and themes
 - **Content Relationships**: Proper foreign key constraints and indexing
 - **Audit Trail**: Created/updated timestamps for all content
 
-## 🔐 Authentication & Security
+## Authentication & Security
 
-### Admin Panel Access
+### Admin panel access
 - **Multi-factor Authentication**: Secure login system
 - **Session Management**: Proper session handling and security
 - **Role-based Access**: Authorized content management
 - **CSRF Protection**: Cross-site request forgery prevention
 
-### Data Security
-- **Input Validation**: Comprehensive request validation
-- **SQL Injection Prevention**: Parameterized queries
+### Data security
+- **Input validation**: Comprehensive request validation
+- **SQL injection prevention**: Parameterized queries
 - **XSS Protection**: Output sanitization
 - **File Upload Security**: Secure image handling
 
-## 📱 User Interface
+## User interface
 
-### Public Interface
+### Public interface
 - **Responsive Design**: Mobile-first approach
 - **Modern Layout**: Clean and professional appearance
 - **Search Functionality**: Content discovery and filtering
@@ -230,18 +230,18 @@ php artisan view:cache
 - **Type Hints**: Modern PHP features
 - **Clean Architecture**: Separation of concerns
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **Laravel Team** - Amazing PHP framework
 - **Bootstrap Team** - Modern CSS framework
 - **FontAwesome** - Professional icon library
 - **Open Source Community** - Continuous improvement and support
 
-## 📞 Support
+## Support
 
 ### Getting Help
 - **Issues**: Report bugs and feature requests
