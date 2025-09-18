@@ -1,5 +1,3 @@
-# DevMed.uz - Professional blog platform
-
 A modern, feature-rich blog platform built with Laravel, featuring a comprehensive admin panel, SEO optimization, and responsive design. This project demonstrates professional web development practices and modern PHP architecture.
 
 ![Laravel Version](https://img.shields.io/badge/Laravel-10.x-red.svg)
