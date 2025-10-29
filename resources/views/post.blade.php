@@ -18,6 +18,13 @@
                     </div>
                 </div>
 
+                <!-- Post Featured Image -->
+                @if($post->image)
+                <div class="post-image-large">
+                    <img src="{{ asset($post->image) }}" alt="{{ $post->title }}">
+                </div>
+                @endif
+
                 <!-- Post Content -->
                 <div class="post-content">
                     <div class="post-text">
@@ -26,13 +33,6 @@
                         @endphp
                         {!! $decodedContent !!}
                     </div>
-
-                    <!-- Post Image -->
-                    @if($post->image)
-                    <div class="post-image-large">
-                        <img src="{{ asset($post->image) }}" alt="{{ $post->title }}">
-                    </div>
-                    @endif
                 </div>
 
                 <!-- Related Posts Section -->
