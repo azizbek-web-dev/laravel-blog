@@ -46,9 +46,9 @@
                                     <article class="post-card">
                                         <div class="post-image">
                                             <img src="{{ asset($relatedPost->image) }}" alt="{{ $relatedPost->title }}">
+                                            <div class="post-category">{{ $relatedPost->category->name ?? 'No category' }}</div>
                                         </div>
                                         <div class="post-content">
-                                            <div class="post-category">{{ $relatedPost->category->name ?? 'No category' }}</div>
                                             <h3 class="post-title">{{ $relatedPost->title }}</h3>
                                             <div class="post-meta">
                                                 <img src="{{ asset($relatedPost->author->image ?? 'img/author-1.png') }}" alt="{{ $relatedPost->author->name ?? 'No author' }}" class="post-avatar">
