@@ -45,13 +45,13 @@
                      <a href="{{ route('single-post', $post->slug) }}" class="post-card-link">
                     <article class="post-card">
                         <div class="post-image">
-                            <img src="{{ $post->image }}" alt="Beach aerial view">
+                            <img src="{{ asset($post->image) }}" alt="{{ $post->title }}">
                         </div>
                         <div class="post-content">
                             <div class="post-category">{{ $post->category->name ?? 'No category' }}</div>
                             <h3 class="post-title">{{ $post->title }}</h3>
                             <div class="post-meta">
-                                <img src="{{ $post->author->image ?? 'img/author-1.png' }}" alt="{{ $post->author->name ?? 'No author' }}" class="post-avatar">
+                                <img src="{{ asset($post->author->image ?? 'img/author-1.png') }}" alt="{{ $post->author->name ?? 'No author' }}" class="post-avatar">
                                 <span class="author-name">{{ $post->author->name ?? 'No author' }}</span>
                                 <span class="post-date">{{ $post->created_at->format('F d, Y') }}</span>
                             </div>

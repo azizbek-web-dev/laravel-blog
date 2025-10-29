@@ -30,7 +30,7 @@
                     <!-- Post Image -->
                     @if($post->image)
                     <div class="post-image-large">
-                        <img src="{{ $post->image }}" alt="{{ $post->title }}">
+                        <img src="{{ asset($post->image) }}" alt="{{ $post->title }}">
                     </div>
                     @endif
                 </div>
@@ -45,13 +45,13 @@
                                 <a href="{{ route('single-post', $relatedPost->slug) }}" class="post-card-link">
                                     <article class="post-card">
                                         <div class="post-image">
-                                            <img src="{{ $relatedPost->image }}" alt="{{ $relatedPost->title }}">
+                                            <img src="{{ asset($relatedPost->image) }}" alt="{{ $relatedPost->title }}">
                                         </div>
                                         <div class="post-content">
                                             <div class="post-category">{{ $relatedPost->category->name ?? 'No category' }}</div>
                                             <h3 class="post-title">{{ $relatedPost->title }}</h3>
                                             <div class="post-meta">
-                                                <img src="{{ $relatedPost->author->image ?? 'img/author-1.png' }}" alt="{{ $relatedPost->author->name ?? 'No author' }}" class="post-avatar">
+                                                <img src="{{ asset($relatedPost->author->image ?? 'img/author-1.png') }}" alt="{{ $relatedPost->author->name ?? 'No author' }}" class="post-avatar">
                                                 <span class="author-name">{{ $relatedPost->author->name ?? 'No author' }}</span>
                                                 <span class="post-date">{{ $relatedPost->created_at->format('F d, Y') }}</span>
                                             </div>
