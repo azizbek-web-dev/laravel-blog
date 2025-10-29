@@ -70,11 +70,12 @@ class Post extends Model
 
     /**
      * Get the comments for the post.
+     * Note: Comment model is not implemented yet, so this is commented out
      */
-    public function comments(): HasMany
-    {
-        return $this->hasMany(Comment::class);
-    }
+    // public function comments(): HasMany
+    // {
+    //     return $this->hasMany(Comment::class);
+    // }
 
     /**
      * Scope a query to only include published posts.
@@ -122,7 +123,7 @@ class Post extends Model
      */
     public function getUrlAttribute(): string
     {
-        return route('posts.show', $this->slug);
+        return route('single-post', $this->slug);
     }
 
     /**

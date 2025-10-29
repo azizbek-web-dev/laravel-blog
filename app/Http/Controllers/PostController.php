@@ -23,8 +23,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $hero = Post::latest()->first();
-        $posts = Post::latest()->take(9)->get();
+        $hero = Post::published()->latest()->first();
+        $posts = Post::published()->latest()->take(9)->get();
         $categories = Category::all();
         $authors = Author::all();
         
@@ -39,14 +39,14 @@ class PostController extends Controller
      */
     public function show(string $slug)
     {
-        $post = Post::where('slug', $slug)->firstOrFail();
+        $post = Post::published()->where('slug', $slug)->firstOrFail();
         
         // Ensure content is properly decoded
         if (is_string($post->content)) {
             $post->content = html_entity_decode($post->content, ENT_QUOTES | ENT_HTML5, 'UTF-8');
         }
         
-        $posts = Post::latest()->take(6)->get(); // Related posts
+        $posts = Post::published()->where('id', '!=', $post->id)->latest()->take(6)->get(); // Related posts
         $categories = Category::all();
         $authors = Author::all();
         
@@ -61,7 +61,7 @@ class PostController extends Controller
      */
     public function index_blog(Request $request)
     {
-        $query = Post::query();
+        $query = Post::published();
         
         // Search functionality
         if ($request->filled('search')) {

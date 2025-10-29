@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use App\Models\Newsletter;
 
 /**
  * Newsletter Controller
@@ -25,8 +26,11 @@ class NewsletterController extends Controller
             'email' => 'required|email|unique:newsletters,email'
         ]);
 
-        // Create newsletter subscription
-        // Implementation would go here
+        Newsletter::create([
+            'email' => $request->email,
+            'is_active' => true,
+            'subscribed_at' => now(),
+        ]);
 
         return response()->json([
             'success' => true,
@@ -43,15 +47,25 @@ class NewsletterController extends Controller
     public function unsubscribe(Request $request): JsonResponse
     {
         $request->validate([
-            'email' => 'required|email'
+            'email' => 'required|email|exists:newsletters,email'
         ]);
 
-        // Remove newsletter subscription
-        // Implementation would go here
+        $newsletter = Newsletter::where('email', $request->email)->first();
+        
+        if ($newsletter) {
+            $newsletter->update([
+                'is_active' => false,
+            ]);
+            
+            return response()->json([
+                'success' => true,
+                'message' => 'Successfully unsubscribed from newsletter!'
+            ]);
+        }
 
         return response()->json([
-            'success' => true,
-            'message' => 'Successfully unsubscribed from newsletter!'
-        ]);
+            'success' => false,
+            'message' => 'Email not found in newsletter subscriptions.'
+        ], 404);
     }
 }

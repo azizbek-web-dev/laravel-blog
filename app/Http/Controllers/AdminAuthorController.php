@@ -61,20 +61,20 @@ class AdminAuthorController extends Controller
             'canonical_url'
         ]);
         $data['password'] = Hash::make($request->password);
-        
-        // Generate slug from name
-        $data['slug'] = \Illuminate\Support\Str::slug($request->name);
+
+        // Generate unique slug from name
+        $data['slug'] = $this->generateUniqueSlug(Str::slug($request->name));
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $imageName = time() . '_' . Str::random(8) . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('img/authors'), $imageName);
             $data['image'] = 'img/authors/' . $imageName;
         }
         
         if ($request->hasFile('og_image')) {
             $ogImage = $request->file('og_image');
-            $ogImageName = 'og_' . time() . '.' . $ogImage->getClientOriginalExtension();
+            $ogImageName = 'og_' . time() . '_' . Str::random(8) . '.' . $ogImage->getClientOriginalExtension();
             $ogImage->move(public_path('img/authors'), $ogImageName);
             $data['og_image'] = 'img/authors/' . $ogImageName;
         }
@@ -134,19 +134,32 @@ class AdminAuthorController extends Controller
             $data['password'] = Hash::make($request->password);
         }
         
-        // Generate slug from name
-        $data['slug'] = \Illuminate\Support\Str::slug($request->name);
+        // Generate unique slug from name if name changed
+        $slug = Str::slug($request->name);
+        if ($slug !== $author->slug) {
+            $data['slug'] = $this->generateUniqueSlug($slug, $author->id);
+        }
 
         if ($request->hasFile('image')) {
+            // Remove old image
+            if ($author->image && file_exists(public_path($author->image))) {
+                unlink(public_path($author->image));
+            }
+            
             $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $imageName = time() . '_' . Str::random(8) . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('img/authors'), $imageName);
             $data['image'] = 'img/authors/' . $imageName;
         }
         
         if ($request->hasFile('og_image')) {
+            // Remove old og_image
+            if ($author->og_image && file_exists(public_path($author->og_image))) {
+                unlink(public_path($author->og_image));
+            }
+            
             $ogImage = $request->file('og_image');
-            $ogImageName = 'og_' . time() . '.' . $ogImage->getClientOriginalExtension();
+            $ogImageName = 'og_' . time() . '_' . Str::random(8) . '.' . $ogImage->getClientOriginalExtension();
             $ogImage->move(public_path('img/authors'), $ogImageName);
             $data['og_image'] = 'img/authors/' . $ogImageName;
         }
@@ -162,8 +175,40 @@ class AdminAuthorController extends Controller
             return back()->with('error', 'Cannot delete author with existing posts!');
         }
 
+        // Remove associated images
+        if ($author->image && file_exists(public_path($author->image))) {
+            unlink(public_path($author->image));
+        }
+        if ($author->og_image && file_exists(public_path($author->og_image))) {
+            unlink(public_path($author->og_image));
+        }
+
         $author->delete();
         return redirect()->route('admin.authors.index')->with('success', 'Author deleted successfully!');
+    }
+
+    /**
+     * Generate a unique slug for authors
+     * 
+     * @param string $slug
+     * @param int|null $excludeId
+     * @return string
+     */
+    private function generateUniqueSlug(string $slug, ?int $excludeId = null): string
+    {
+        $originalSlug = $slug;
+        $counter = 1;
+
+        while (Author::where('slug', $slug)
+            ->when($excludeId, function ($query) use ($excludeId) {
+                return $query->where('id', '!=', $excludeId);
+            })
+            ->exists()) {
+            $slug = $originalSlug . '-' . $counter;
+            $counter++;
+        }
+
+        return $slug;
     }
 }
 

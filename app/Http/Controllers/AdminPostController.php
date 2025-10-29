@@ -64,14 +64,17 @@ class AdminPostController extends Controller
         
         // Handle image
         $image = $request->file('image');
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $imageName = time() . '_' . Str::random(8) . '.' . $image->getClientOriginalExtension();
         $image->move(public_path('img/posts'), $imageName);
 
         try {
+            // Generate unique slug
+            $slug = $this->generateUniqueSlug(Str::slug($request->title));
+            
             // Create the post
             $post = Post::create([
                 'title' => $request->title,
-                'slug' => Str::slug($request->title),
+                'slug' => $slug,
                 'content' => htmlspecialchars($request->content, ENT_QUOTES | ENT_HTML5, 'UTF-8'),
                 'excerpt' => $request->excerpt ?: '', // Use provided excerpt or empty
                 'image' => 'img/posts/' . $imageName,
@@ -142,17 +145,28 @@ class AdminPostController extends Controller
             'canonical_url' => 'nullable|url|max:255',
         ]);
 
+        // Generate unique slug if title changed
+        $slug = Str::slug($request->title);
+        if ($slug !== $post->slug) {
+            $slug = $this->generateUniqueSlug($slug, $post->id);
+        }
+        
         $data = [
             'title' => $request->title,
-            'slug' => Str::slug($request->title),
+            'slug' => $slug,
             'content' => htmlspecialchars($request->content, ENT_QUOTES | ENT_HTML5, 'UTF-8'),
             'category_id' => $request->category_id,
             'excerpt' => $request->excerpt,
         ];
 
         if ($request->hasFile('image')) {
+            // Remove old image
+            if ($post->image && file_exists(public_path($post->image))) {
+                unlink(public_path($post->image));
+            }
+            
             $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $imageName = time() . '_' . Str::random(8) . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('img/posts'), $imageName);
             $data['image'] = 'img/posts/' . $imageName;
         }
@@ -198,6 +212,14 @@ class AdminPostController extends Controller
 
     public function destroy(Post $post)
     {
+        // Remove associated images
+        if ($post->image && file_exists(public_path($post->image))) {
+            unlink(public_path($post->image));
+        }
+        if ($post->og_image && file_exists(public_path($post->og_image))) {
+            unlink(public_path($post->og_image));
+        }
+        
         $post->delete();
         return redirect()->route('admin.posts.index')->with('success', 'Post deleted successfully!');
     }
@@ -241,6 +263,30 @@ class AdminPostController extends Controller
         }
 
         return back()->with('success', "SEO fields regenerated for {$updatedCount} posts successfully!");
+    }
+
+    /**
+     * Generate a unique slug for posts
+     * 
+     * @param string $slug
+     * @param int|null $excludeId
+     * @return string
+     */
+    private function generateUniqueSlug(string $slug, ?int $excludeId = null): string
+    {
+        $originalSlug = $slug;
+        $counter = 1;
+
+        while (Post::where('slug', $slug)
+            ->when($excludeId, function ($query) use ($excludeId) {
+                return $query->where('id', '!=', $excludeId);
+            })
+            ->exists()) {
+            $slug = $originalSlug . '-' . $counter;
+            $counter++;
+        }
+
+        return $slug;
     }
 }
 

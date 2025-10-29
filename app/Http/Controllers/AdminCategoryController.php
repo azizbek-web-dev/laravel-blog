@@ -106,7 +106,7 @@ class AdminCategoryController extends Controller
         $validated = $this->validateCategoryData($request, $category->id);
         
         // Prepare data for update
-        $categoryData = $this->prepareCategoryData($request, $validated);
+        $categoryData = $this->prepareCategoryData($request, $validated, $category->id);
         
         // Handle new Open Graph image upload if provided
         if ($request->hasFile('og_image')) {
@@ -187,7 +187,7 @@ class AdminCategoryController extends Controller
      * @param array $validated
      * @return array
      */
-    private function prepareCategoryData(Request $request, array $validated): array
+    private function prepareCategoryData(Request $request, array $validated, ?int $categoryId = null): array
     {
         $data = $request->only([
             'name', 'description', 'color', 'icon',
@@ -195,10 +195,44 @@ class AdminCategoryController extends Controller
             'og_title', 'og_description', 'canonical_url'
         ]);
         
-        // Generate SEO-friendly slug from name
-        $data['slug'] = Str::slug($request->name);
+        // Generate SEO-friendly unique slug from name
+        $slug = Str::slug($request->name);
+        if ($categoryId) {
+            // For updates, check if slug changed
+            $category = Category::find($categoryId);
+            if ($category && $slug !== $category->slug) {
+                $data['slug'] = $this->generateUniqueSlug($slug, $categoryId);
+            }
+        } else {
+            // For creates
+            $data['slug'] = $this->generateUniqueSlug($slug);
+        }
         
         return $data;
+    }
+
+    /**
+     * Generate a unique slug for categories
+     * 
+     * @param string $slug
+     * @param int|null $excludeId
+     * @return string
+     */
+    private function generateUniqueSlug(string $slug, ?int $excludeId = null): string
+    {
+        $originalSlug = $slug;
+        $counter = 1;
+
+        while (Category::where('slug', $slug)
+            ->when($excludeId, function ($query) use ($excludeId) {
+                return $query->where('id', '!=', $excludeId);
+            })
+            ->exists()) {
+            $slug = $originalSlug . '-' . $counter;
+            $counter++;
+        }
+
+        return $slug;
     }
 
     /**
